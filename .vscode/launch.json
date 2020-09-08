@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Debug with Chrome against localhost",
+            "url": "http://localhost:8080/",
+            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "Start Server",
+            "postDebugTask": "Kill Server"
+        }
+    ]
+}
