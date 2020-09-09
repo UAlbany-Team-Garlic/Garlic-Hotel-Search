@@ -5,14 +5,21 @@
             "label": "Start Server",
             "type": "shell",
             "windows":{
-                "command": "${workspaceFolder}\\.vscode\\dbg\\StartServer.bat"
+                "command": "${workspaceFolder}\\tests\\StartServer.bat"
             }
         },
         {
             "label": "Kill Server",
             "type": "shell",
             "windows":{
-                "command": "${workspaceFolder}\\.vscode\\dbg\\KillServer.bat"
+                "command": "${workspaceFolder}\\tests\\KillServer.bat"
+            }
+        },
+        {
+            "label": "Test Server",
+            "type": "shell",
+            "windows":{
+                "command": "${workspaceFolder}\\tests\\Test.bat"
             }
         }
     ]
