@@ -1,0 +1,209 @@
+/*      
+. gARLIC SASS Framework
+. v0.1
+*/
+
+//--> FONTS
+// Poppins
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
+
+//--> COLORS / FONTS
+// COLORS
+$green: #7ad68d;
+$darkBg: #22222c;
+$lightBg: #e3e3e3;
+$navBg: #282a36;
+$darkblue: #111116;
+$lightblue: #343746;
+$pcolor: #d0d0d0;
+// FONTS
+$font: "Poppins", sans-serif;
+
+// --> MEDIA QUERIES
+// BREAKPOINTS
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+//--> GLOBAL
+div#App {
+  overflow-x: hidden;
+  width: 100vw !important;
+}
+
+//--> NAVBAR
+$navHeight: 85px;
+
+#nav {
+  position: relative;
+  z-index: 1000;
+  height: $navHeight;
+  width: 100%;
+  background: $navBg;
+}
+
+.nav-logo {
+  height: $navHeight * 0.6;
+  width: $navHeight * 0.6;
+  margin-top: 16px;
+  margin-right: 8px;
+  float: left;
+  background: url("../imgs/garlic-md.png") no-repeat;
+  background-size: 60%;
+  background-position: center;
+  background-color: $darkblue;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: $sm) {
+  .nav-logo {
+    height: $navHeight * 0.5;
+    width: $navHeight * 0.5;
+    margin-top: 19px;
+  }
+}
+
+h1.nav-title {
+  color: $green;
+  font-weight: 500;
+  font-size: 1.7em;
+  letter-spacing: 0px;
+  float: left;
+  line-height: $navHeight;
+  user-select: none;
+}
+
+@media only screen and (max-width: $sm) {
+  h1.nav-title {
+    font-size: 1.4em;
+  }
+}
+
+.nav-user {
+  height: $navHeight;
+  width: $navHeight * 0.5;
+  position: relative;
+  float: right;
+  margin-right: -12px;
+  display: none;
+}
+
+.nav-user-icon {
+  height: $navHeight * 0.5;
+  width: $navHeight * 0.5;
+  background: url("../imgs/ph-profile-pic.png") no-repeat;
+  background-size: 50%;
+  background-position: center;
+  background-color: $darkblue;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
+// HAMBURGER
+.nav-hamburger {
+  height: $navHeight;
+  width: $navHeight * 0.7;
+  position: relative;
+  float: right;
+}
+
+.nav-hamburger-wrapper {
+  height: $navHeight * 0.5;
+  width: 34px;
+  position: relative;
+  top: 50%;
+  margin-left: auto;
+  order: 2;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.nav-hamburger-line-top {
+  height: 2px;
+  width: $navHeight * 0.4;
+  border-radius: 6px;
+  position: absolute;
+  background: #fff;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: -10px;
+}
+
+.nav-hamburger-line-mid {
+  height: 2px;
+  width: $navHeight * 0.4;
+  border-radius: 6px;
+  position: absolute;
+  background: #fff;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav-hamburger-line-btm {
+  height: 2px;
+  width: $navHeight * 0.4;
+  border-radius: 6px;
+  position: absolute;
+  background: #fff;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 10px;
+}
+
+//--> FORM STUFF
+button.dates {
+  background: url("../imgs/calendar-white.png") no-repeat;
+  background-color: $lightblue;
+  background-size: 60%;
+  background-position: center;
+  border: none;
+  outline: none;
+  height: 45px;
+  width: 45px;
+  float: right;
+  margin-top: -45px;
+  cursor: pointer;
+}
+
+button.search {
+  float: right;
+  background: $green;
+  border: none;
+  outline: none;
+  font-size: 1.3em;
+  color: $lightblue;
+  font-weight: 700;
+  padding: 8px 20px;
+  margin-top: 15px;
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: background 0.15s cubic-bezier(0.39, 0.575, 0.565, 1),
+    color 0.15s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+button.search:hover {
+  background: $lightblue;
+  color: #fff;
+}
+
+@media only screen and (max-width: $sm) {
+  button.search {
+    width: 100%;
+  }
+}
+
+//--> SEARCHBAR SHIT
+
+@media only screen and (min-width: $lg) {
+  form#searchbar {
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
