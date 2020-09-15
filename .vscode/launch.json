@@ -1,14 +1,35 @@
 {
     "version": "0.2.0",
+    "compounds": [
+        {
+            "name": "Debug All",
+            "configurations": ["Backend Debug", "Frontend Debug"]
+        }
+    ],
     "configurations": [
         {
             "type": "chrome",
             "request": "launch",
             "name": "Debug with Chrome against localhost",
             "url": "http://localhost:8080/",
-            "webRoot": "${workspaceFolder}",
+            "webRoot": "${workspaceFolder}/source/client/build",
             "preLaunchTask": "Start Server",
             "postDebugTask": "Kill Server"
-        }
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Frontend Debug",
+            "url": "http://localhost:8080/",
+            "webRoot": "${workspaceFolder}/source/client/build",
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Backend Debug",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/source/server/server.js",
+            "console": "externalTerminal"
+        },
     ]
 }

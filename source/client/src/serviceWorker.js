@@ -1,3 +1,9 @@
+
+/*
+  Suposidly we need this file, its auto generated and I have no clue what it does lmao
+*/
+
+
 // This optional code is used to register a service worker.
 // register() is not called by default.
 

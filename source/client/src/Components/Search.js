@@ -1,4 +1,5 @@
 import React from "react";
+import {runSearch} from "../makeSearch.js"
 
 function Search() {
   return (
@@ -7,7 +8,7 @@ function Search() {
         <div className="row">
           <div className="twelve col no-padding-bottom">
             <div className="text-container" style={{ background: "#fff" }}>
-              <form className="form" id="searchbar">
+              <div className="form" id="searchbar">
                 <h1 className="header" style={{ color: "#343746" }}>
                   <div className="header-icon search-icon"></div>
                   Search
@@ -16,10 +17,11 @@ function Search() {
                   type="text"
                   placeholder="Boston, MA"
                   className="form"
+                  id="searchInput"
                 ></input>
                 <button className="dates"></button>
-                <button className="search">Search Hotels</button>
-              </form>
+                <button className="search" onClick={() => {runSearch();}}>Search Hotels</button>
+              </div>
             </div>
           </div>
           <div className="four col left">
