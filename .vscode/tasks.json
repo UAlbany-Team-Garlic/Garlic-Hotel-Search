@@ -21,6 +21,13 @@
             "windows":{
                 "command": "${workspaceFolder}\\tests\\Test.bat"
             }
+        },
+        {
+            "label": "Build Frontend",
+            "type": "shell",
+            "windows":{
+                "command": "${workspaceFolder}\\tests\\Test.bat"
+            }
         }
     ]
 }
