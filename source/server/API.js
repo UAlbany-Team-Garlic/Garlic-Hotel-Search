@@ -5,7 +5,7 @@
 */
 
 //This function will acess the API and maybe create a JS Listing Obeject array, right now it generates random data
-function search(searchText){    
+function search(searchText, daterange, numBeds){    
     let listings = [];
     for(let i = 0; i < 20; i++){
         let random = Math.floor(Math.random() * 100)
@@ -33,6 +33,7 @@ class Listing{
         this.rating = rating;
     }
 }
+
 class Bed{
     constructor(name){
         this.name = name; // Full, King or Queen

@@ -18,7 +18,15 @@ app.get("/", function(req, res){
 //Handle search requests
 app.get("/GarlicSearchEndpoint", function(req, res){ 
     let searchText = decodeURI(req.query.search);
-    console.log("Recived Request to search for "+ searchText);
+    let dateRange = decodeURI(req.query.dates);
+    //console.log("Recived Request to search for "+ searchText);
+    let listingObject = HotelAPI.search(searchText);    //Call our hotel search interface in API.js 
+    res.json(listingObject);
+});
+
+app.get("/GarlicAccountCreationEndpoint", function(req, res){ 
+    
+    //console.log("Recived Request to search for "+ searchText);
     let listingObject = HotelAPI.search(searchText);    //Call our hotel search interface in API.js 
     res.json(listingObject);
 });

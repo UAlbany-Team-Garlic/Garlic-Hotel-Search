@@ -1,17 +1,26 @@
 
 
-//This function is called when the search data is returned from the API
+//This function is called when the search data is sucessfull returned from the API
 //The data will be in the form of a Listing object array found in /source/server/API.js
-function searchCallback(data){
+function searchSuccessCallback(data){
     console.log(data);
+}
+
+//This function is called when the search fails for any reason
+function searchFailureCallback(reason){
+    console.error("Search Failure:" + reason);
 }
 
 //This function is called when the "Search" button is pressed
 export function runSearch(){
-    let searchText = document.getElementById("searchInput").value;
-    console.log("Sent Search Request for \"" + searchText + "\"");
-    let encodedSearchText = encodeURIComponent(searchText); //Since we're using it in a url query param with fetch, we need to encode it
-    fetch("/GarlicSearchEndpoint?search=" + encodedSearchText)
-    .then(response => response.json())  //convert return data to json
-    .then(data => searchCallback(data)); //do something with our API return data
+    //Get Values from the frontend
+    let encodedSearchText = encodeURIComponent(document.getElementById("searchInput").value);
+    let encodedDates = encodeURIComponent("null"); //TODO: pass required date range
+    let encodedBeds = encodeURIComponent("null"); //TODO: pass required beds
+
+    //Pass Values to the backend's search endpoint
+    fetch("/GarlicSearchEndpoint?search=" + encodedSearchText + "&dates=" + encodedDates + "&beds=" + encodedBeds)
+    .then(response => response.json())               //convert return data to json
+    .then(data => searchSuccessCallback(data))       //do something with our API return data
+    .catch(reason => searchFailureCallback(reason)); //handle errors
 }
