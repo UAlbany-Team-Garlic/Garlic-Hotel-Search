@@ -61,16 +61,16 @@ class User{
             this.username, this.passHash, this.prevPassHash, this.email, this.phone]);
         let deletedFavs = this.#oldFavorites.filter(e => !this.favorites.includes(e)); //in oldFavorites not favorites  
         for(let i = 0; i < deletedFavs.length; i++) 
-            database.query("DELETE FROM favorites WHERE user_id=? AND hotel_id=?", [this.#userID, deletedFavs[i]]);
+            database.query("DELETE FROM favorites WHERE user_id=? AND hotel_id=?", ["" + this.#userID, deletedFavs[i]]);
         let newFavs = this.favorites.filter(e => !this.#oldFavorites.includes(e));      //in favorites not oldFavorites
         for(let i = 0; i < newFavs.length; i++)
-            database.query("INSERT INTO favorites(user_id, hotel_id) VALUES (?, ?)", [this.#userID, newFavs[i]]);
+            database.query("INSERT INTO favorites(user_id, hotel_id) VALUES (?, ?)", ["" + this.#userID, newFavs[i]]);
     }
 
     removeFromDB(){     //remove a user from the database
         this.#deleted = true;
-        database.query("DELETE FROM users WHERE user_id=?", this.#userID);
-        database.query("DELETE FROM favorites WHERE user_id=?", this.#userID);
+        database.query("DELETE FROM users WHERE user_id=?", ["" + this.#userID]);
+        database.query("DELETE FROM favorites WHERE user_id=?", ["" + this.#userID]);
     }
 }
 
