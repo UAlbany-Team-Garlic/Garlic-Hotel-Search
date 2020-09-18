@@ -29,11 +29,11 @@ function credValidation(username, password, email, phone){
     const EM_MAX_LENGTH = 30;
     let errors = []; 
     if(username.length < UN_MIN_LENGTH || username.length > UN_MAX_LENGTH)      //Check usernames meet length requirements
-        errors.push("Usernames must be between" + UN_MIN_LENGTH + " and " + UN_MAX_LENGTH);
+        errors.push("Usernames must be between " + UN_MIN_LENGTH + " and " + UN_MAX_LENGTH + "chars");
     if(password.length < PW_MIN_LENGTH || password.length > PW_MAX_LENGTH)      //Check passwords meet length requirements
-        errors.push("Passwords must be between" + PW_MIN_LENGTH + " and " + PW_MAX_LENGTH);
+        errors.push("Passwords must be between " + PW_MIN_LENGTH + " and " + PW_MAX_LENGTH);
     if(!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]/.test(password))           //Check passwords meet complexity requirements
-        errors.push("Password must contain at least one lowercase, one uppercase, and one number");
+        errors.push("Password must contain at least one lowercase, one uppercase, and one number" + "chars");
     if(email.length > EM_MAX_LENGTH)
         errors.push("Email address must be less then " + EM_MAX_LENGTH + " chars.");
     if(phone != "" && !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/.test(phone))
@@ -47,7 +47,7 @@ function credValidation(username, password, email, phone){
 exports.credValidation = credValidation;
 
 //This function will be called by the frontend when a new user is to be created
-export function newUser(){
+function newUser(){
     //Get New User Data
     let username = "";//document.getElementById().value; 
     let password = "";//document.getElementById().value;
@@ -77,3 +77,5 @@ export function newUser(){
         newUserError(["Unexpected new user fetch() fault: " + reason]);
     });
 } 
+
+exports.newUser = newUser;
