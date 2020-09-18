@@ -27,9 +27,10 @@ app.get("/GarlicSearchEndpoint", function(req, res){
 
 //Account Creation Handling
 app.get("/GarlicAccountCreationEndpoint", function(req, res){ 
-    res.json();
+    res.json(DatabaseInterface.newUser(req.query));
 });
 
+/*
 //Login / Authentication Handling
 app.get("/GarlicAuthEndpoint", function(req, res){ 
     
@@ -41,6 +42,7 @@ app.get("/GarlicUpdateUserEndpoint", function(req, res){
     
     //console.log("Recived Request to search for "+ searchText);
 });
+*/
 
 //Start
 app.listen(8080); 

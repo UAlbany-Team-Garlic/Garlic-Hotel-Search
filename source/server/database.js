@@ -13,44 +13,42 @@ const databaseCreds = require("./databaseCredentials.json");    //Database Usern
 
 let database = new mysqlSync(databaseCreds);
 
-//=========================== User Models (Ask James if you need help understanding these) ==============================================================================
-//All SQL queries should take place exclusively within the User Models
-
-//I regret using OOP in JS to try modeling anything, apparently upcasting isn't even possable :(
-//https://stackoverflow.com/questions/63949482/javascript-es6-upcast-subclass-to-super-class
-
-//This object represents a user that can be passed back to the client and contains no sensitive info
-class SafeUser{
-    #userID     //User ID must be private so it dosn't turn into JSON and get sent client side, also shouldn't be changed from outside
-    #row        //The OG row used for accessing query results in the subclasses
-    constructor(username){
-        this.#row = connection.query('SELECT * FROM users WHERE user=?', username);
-        this.#userID = this.#row.id;
-        this.username = this.#row.user;
-        this.email = this.#row.email;
-        this.phone = this.#row.phone;
-        this.favorites = connection.query("SELECT hotel_id FROM favorites WHERE user_id=?", this.#userID);
-    }
+function hashPassword(password){
+    return bcrypt.hashSync(password, Number(10));
 }
 
-//This object represents a modifyable user and should be used exclusivly in the backend and contains more sensitive info
-class UnsafeUser extends SafeUser {
+//=========================== User Models (Ask James if you need help understanding these) ==============================================================================
+//All SQL queries should take place exclusively within the User Model
+
+//This object models a user
+class User{
+    #userID         //User ID must be private so it dosn't turn into JSON and get sent client side, also shouldn't be changed from outside
     #oldFavorites   //preserve the orginal favorites updating favorites
     #deleted        //Weather the object has been deleted
-    /*  1) new UnsafeUser(username) : get a user who already exists
-        2) new UnsafeUser(username, password, prevPassword, email, phone) : create a new user  */
+    /*  1) new User(username) : get a user who already exists
+        2) new User(username, password, prevPassword, email, phone) : create a new user  */
     constructor(...params){
         if(params.length == 5){  // constructor of type 1
             if(connection.query("SELECT user FROM users WHERE user=?", params[0]).length != 0)
                 throw new Error("Username is already taken!");
             connection.query("INSERT INTO users(user, pw, pw_prev, email, phone) VALUES (?, ?, ?, ?, ?)", params);
         }else if(params.length != 1) // constructor of type neither one nor 2
-            throw new Error("Invalid Construction of UnsafeUser Object");
-        super(params[0]);
-        this.passHash = this.#row.pw;
-        this.prevPassHash = this.#row.pw_prev;
+            throw new Error("Invalid Construction of User Object");
+        row = connection.query('SELECT * FROM users WHERE user=?', username);
+        this.#userID = row.id;
+        this.username = row.user;
+        this.email = row.email;
+        this.phone = row.phone;
+        this.favorites = connection.query("SELECT hotel_id FROM favorites WHERE user_id=?", this.#userID);
+        this.passHash = row.pw;
+        this.prevPassHash = row.pw_prev;
         this.#deleted = false;
         this.#oldFavorites = this.favorites;    //preserve the orginal favorites updating favorites
+    }
+
+    //return user info to the client
+    getClientObject(){
+        return {username: this.username, email: this.email, phone: this.phone, favorites: this.favorites};
     }
 
     updateInDB(){ //Update user with any changed properties in the database
@@ -76,10 +74,7 @@ class UnsafeUser extends SafeUser {
 //=========================== User Functions ==============================================================================
 
 function newUser(query){
-    let username = query.username;
-    let password = query.password;
-    let email = query.email;
-    let phone = query.phone;
+    let username = query.username, password = query.password, email = query.email, phone = query.phone;
     let returnObject = {};
     try{
         returnObject.errors = credValidator.credValidation(username, password, email, phone);     //re-validate credentials server side
@@ -87,9 +82,9 @@ function newUser(query){
             returnObject.errors.push("If you are seeing this message, you are illegally using the /GarlicAccountCreationEndpoint endpoint")
             return returnObject;
         }
-        pwHash = bcrypt.hashSync(password, Number(10));
+        pwHash = hashPassword(password);
         let userModel = new UnsafeUser(username, password, null, email, phone);
-        returnObject.user = (SafeUser)userModel;
+        returnObject.user = userModel.getClientObject();
     }catch(error){
         returnObject.errors.push("Server Side Error:" + error.message)
     }finally{

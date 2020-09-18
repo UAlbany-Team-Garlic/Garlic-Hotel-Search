@@ -4,5 +4,5 @@ source/server/databaseCredentials.json
 source/client/node_modules
 source/client/package-lock.json
 source/client/build
-proofOfConcept/package-lock.json
-proofOfConcept/node_modules
+sandbox/package-lock.json
+sandbox/node_modules
