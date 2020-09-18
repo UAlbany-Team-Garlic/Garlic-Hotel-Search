@@ -2,6 +2,7 @@
 
 const express = require("express");
 const HotelAPI = require("./API");
+const DatabaseInterface = require("./database")
 
 //Express Setup
 let app = express(); //initilize the express app
@@ -24,11 +25,21 @@ app.get("/GarlicSearchEndpoint", function(req, res){
     res.json(listingObject);
 });
 
+//Account Creation Handling
 app.get("/GarlicAccountCreationEndpoint", function(req, res){ 
+    res.json();
+});
+
+//Login / Authentication Handling
+app.get("/GarlicAuthEndpoint", function(req, res){ 
     
     //console.log("Recived Request to search for "+ searchText);
-    let listingObject = HotelAPI.search(searchText);    //Call our hotel search interface in API.js 
-    res.json(listingObject);
+});
+
+//Update Handling
+app.get("/GarlicUpdateUserEndpoint", function(req, res){ 
+    
+    //console.log("Recived Request to search for "+ searchText);
 });
 
 //Start

@@ -1,5 +1,7 @@
 "use strict"
 
+//This is a copy of database back when it used multiple user classes with inheritance
+
 /*
     This file is for functions that connect the SQL database to main backend, server.js
 */
