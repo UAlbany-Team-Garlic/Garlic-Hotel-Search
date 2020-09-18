@@ -1,5 +1,8 @@
 source/server/node_modules
 source/server/package-lock.json
+source/server/databaseCredentials.json
 source/client/node_modules
 source/client/package-lock.json
 source/client/build
+sandbox/package-lock.json
+sandbox/node_modules

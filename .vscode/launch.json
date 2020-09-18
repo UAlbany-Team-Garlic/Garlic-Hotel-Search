@@ -31,5 +31,12 @@
             "program": "${workspaceFolder}/source/server/server.js",
             "console": "externalTerminal"
         },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Node Current File",
+            "program": "${file}",
+            "console": "externalTerminal"
+        },
     ]
 }
