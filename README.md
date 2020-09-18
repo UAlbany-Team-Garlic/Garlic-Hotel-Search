@@ -31,7 +31,7 @@
 ## Layout
 * **.vscode/ :** VS code tools for advanced debug launching and vs code tasks
 * **Trash/ :** Old files that we may still need to reffrence quickly
-* **proofOfConcept/ :** Sandbox for features and packages we want to test
+* **sandbox/ :** Sandbox for features and packages we want to test
 * **source/ :** Code for the application
 * **source/client/ :** frontend code
 * **source/client/package.json :** frontend packages
