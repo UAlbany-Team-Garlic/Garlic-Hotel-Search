@@ -72,6 +72,17 @@ class User{
         database.query("DELETE FROM users WHERE user_id=?", ["" + this.#userID]);
         database.query("DELETE FROM favorites WHERE user_id=?", ["" + this.#userID]);
     }
+
+    authenticate(password){     //determine if a user really is 
+
+    }
+}
+
+class UserRes{
+    constructor(){
+        this.user = null;
+        this.errors = [];
+    }
 }
 
 //=========================== User Functions ==============================================================================
@@ -86,8 +97,7 @@ function newUser(query){
             return returnObject;
         }
         let pwHash = hashPassword(password);
-        let userModel = new User(username, pwHash, "", email, phone);
-        returnObject.user = userModel.getClientObject();
+        returnObject.user = new User(username, pwHash, "", email, phone);
     }catch(error){
         returnObject.errors.push("Server Side Error: " + error.message)
     }finally{
@@ -97,7 +107,9 @@ function newUser(query){
 
 exports.newUser = newUser;
 
-function deleteUser(username, password){}
+function deleteUser(query){
+
+}
 
 exports.deleteUser = deleteUser;
 

@@ -29,10 +29,15 @@
 
 
 ## Layout
+#### Root
 * **.vscode/ :** VS code tools for advanced debug launching and vs code tasks
-* **Trash/ :** Old files that we may still need to reffrence quickly
+* **trashbin/ :** Old files that we may still need to reffrence quickly
 * **sandbox/ :** Sandbox for features and packages we want to test
 * **source/ :** Code for the application
+* **tests/ :** scripts for testing the application 
+* **.gitignore :** list of files that shoun't be uploaded to github (api keys, node modules)
+* **setup.bat :** batch script to set up node packages for the backend
+#### Source
 * **source/client/ :** frontend code
 * **source/client/package.json :** frontend packages
 * **source/client/build/ :** compiled frontend files, do not edit these!
@@ -41,6 +46,4 @@
 * **source/server/ :** backend code
 * **source/server/package.json :** backend packages
 * **source/server/server.js :** backend entrypoint
-* **tests/ :** scripts for testing the application 
-* **.gitignore :** list of files that shoun't be uploaded to github (api keys, node modules)
-* **setup.bat :** batch script to set up node packages for the backend
+
