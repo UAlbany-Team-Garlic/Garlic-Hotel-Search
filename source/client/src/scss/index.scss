@@ -14,13 +14,14 @@ $darkBg: #22222c;
 $lightBg: #e3e3e3;
 $navBg: #282a36;
 $darkblue: #111116;
-$lightblue: #343746;
+$lightblue: #070708;
 $pcolor: #d0d0d0;
 // FONTS
 $font: "Poppins", sans-serif;
 
 // --> MEDIA QUERIES
 // BREAKPOINTS
+$xsm: 300px;
 $sm: 576px;
 $md: 768px;
 $lg: 992px;
@@ -81,6 +82,12 @@ h1.nav-title {
   }
 }
 
+@media only screen and (max-width: $xsm) {
+  h1.nav-title {
+    font-size: 1.3em;
+  }
+}
+
 .nav-user {
   height: $navHeight;
   width: $navHeight * 0.5;
@@ -105,57 +112,6 @@ h1.nav-title {
   display: none;
 }
 
-// HAMBURGER
-.nav-hamburger {
-  height: $navHeight;
-  width: $navHeight * 0.7;
-  position: relative;
-  float: right;
-}
-
-.nav-hamburger-wrapper {
-  height: $navHeight * 0.5;
-  width: 34px;
-  position: relative;
-  top: 50%;
-  margin-left: auto;
-  order: 2;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.nav-hamburger-line-top {
-  height: 2px;
-  width: $navHeight * 0.4;
-  border-radius: 6px;
-  position: absolute;
-  background: #fff;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-top: -10px;
-}
-
-.nav-hamburger-line-mid {
-  height: 2px;
-  width: $navHeight * 0.4;
-  border-radius: 6px;
-  position: absolute;
-  background: #fff;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.nav-hamburger-line-btm {
-  height: 2px;
-  width: $navHeight * 0.4;
-  border-radius: 6px;
-  position: absolute;
-  background: #fff;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-top: 10px;
-}
-
 //--> FORM STUFF
 button.dates {
   background: url("../imgs/calendar-white.png") no-repeat;
@@ -167,7 +123,7 @@ button.dates {
   height: 45px;
   width: 45px;
   float: right;
-  margin-top: -45px;
+  margin-top: -52px;
   cursor: pointer;
 }
 
@@ -199,6 +155,32 @@ button.search:hover {
 }
 
 //--> SEARCHBAR SHIT
+@media only screen and (min-width: $lg) {
+  form#searchbar {
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+//--> LOGIN/REGISTER
+.loginRegisterContainer {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background: red;
+}
+
+h1.loginRegister {
+  color: $darkblue;
+  font-size: 2.2em;
+  margin-top: -12px;
+  font-weight: 500;
+  user-select: none;
+}
 
 @media only screen and (min-width: $lg) {
   form#searchbar {
@@ -206,4 +188,28 @@ button.search:hover {
     left: 50%;
     transform: translateX(-50%);
   }
+}
+
+#loginSwitch {
+  cursor: pointer;
+  color: #ececf9;
+  transition: color 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+#loginSwitch:hover {
+  color: #d1d1eb;
+}
+
+#loginForm {
+  display: none;
+}
+#registerForm {
+}
+
+.loginForm-active {
+  display: block !important;
+}
+
+.registerForm-active {
+  display: none !important;
 }
