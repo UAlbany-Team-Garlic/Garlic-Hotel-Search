@@ -15,18 +15,18 @@ function Nav() {
               <div className="menu-title-profilePic"></div>
               <h1 className="menu-title-header"></h1>
             </div>
-            <div className="menu-item">
-              <a href="/" className="menu-item-link">
+            <a href="/" className="menu-item-link">
+              <div className="menu-item">
                 <p className="menu-item-link-p">Home</p>
-              </a>
-            </div>
-            <div className="menu-item">
-              <a href="/login" className="menu-item-link">
+              </div>
+            </a>
+            <a href="/login" className="menu-item-link">
+              <div className="menu-item">
                 <p className="menu-item-link-p" id="register">
                   Register
                 </p>
-              </a>
-            </div>
+              </div>
+            </a>
           </div>
           <div
             className="nav-hamburger"

@@ -88,7 +88,7 @@ $navHeight: 85px;
 }
 
 // MENU
-$menuWidth: 290px;
+$menuWidth: 320px;
 #menu {
   background: #0d0d11;
   height: 100vh;
@@ -115,11 +115,13 @@ $menuItemHeight: 60px;
   height: $menuItemHeight;
   padding: 0 30px;
   box-sizing: border-box;
+  background: #14141b;
 }
 
 .menu-title {
   height: $navHeight;
   position: relative;
+  background: #0d0d11;
 }
 
 h1.menu-title-header {
@@ -137,17 +139,24 @@ a.menu-item-link {
   letter-spacing: 1px;
   font-weight: 500;
   cursor: pointer;
-  position: relative;
-  left: 0;
-  transition: left 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
-    color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
   text-decoration: none;
   user-select: none;
 }
 
-a.menu-item-link:hover {
+a.menu-item-link p {
+  left: 0;
+  position: relative;
+  transition: left 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+    color 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+a.menu-item-link:hover p {
   color: $green;
   left: 5px;
+}
+
+a.menu-item-link:hover .menu-item {
+  background: #17171f;
 }
 
 p#logout {
@@ -158,7 +167,6 @@ p#logout:hover {
 }
 
 p#register {
-  color: $green;
 }
 p#logout:hover {
   color: #fff !important;
@@ -183,7 +191,7 @@ p#logout:hover {
     width: $menuWidth;
   }
   .menu-item {
-    height: 70px;
+    height: 80px;
     padding: 0 23px;
     box-sizing: border-box;
   }
@@ -197,6 +205,9 @@ p#logout:hover {
   a.menu-item-link {
     text-align: center;
     font-size: 1.6em;
+  }
+  a.menu-item-link p {
+    line-height: 80px;
   }
   a.menu-item-link:hover {
     color: $green;
