@@ -1,16 +1,28 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./scss/Garlic.scss";
-import Nav from "./Components/Nav.js";
-import Search from "./Components/Search.js";
-import Footer from "./Components/Footer.js";
+import "./scss/hamburger.scss";
+import Nav from "./Components/Nav";
+import Search from "./Components/Search";
+import Footer from "./Components/Footer";
+import LoginRegister from "./Components/LoginRegister";
 
 function App() {
   return (
-    <div className="App">
-      <Nav />
-      <Search />
-      <Footer />
-    </div>
+    <Router>
+      <div className="App">
+        <Nav />
+        <Switch>
+          <Route path="/login">
+            <LoginRegister />
+          </Route>
+          <Route path="">
+            <Search />
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

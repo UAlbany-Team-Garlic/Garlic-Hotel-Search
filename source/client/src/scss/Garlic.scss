@@ -56,6 +56,10 @@ a {
   display: block !important;
 }
 
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
 //--> CONTAINERS
 .container {
   width: 100%;
@@ -74,16 +78,16 @@ a {
 
 @media only screen and (max-width: $md) {
   .container {
-    padding: 0 15px;
+    padding: 0 23px;
   }
 }
 
 @media only screen and (max-width: $sm) {
   .container {
-    padding: 0 10px;
+    padding: 0 23px;
   }
   .text-container {
-    padding: 18px;
+    padding: 23px;
   }
 }
 
@@ -226,7 +230,7 @@ $colPadding: 30px;
 }
 
 @media only screen and (max-width: $md) {
-  $colPadding: 15px;
+  $colPadding: 0px;
   .col {
     padding: $colPadding;
   }
@@ -284,7 +288,7 @@ $colPadding: 30px;
 }
 
 @media only screen and (max-width: $sm) {
-  $colPadding: 10px;
+  $colPadding: 0px;
   .col {
     padding: $colPadding;
   }
@@ -350,18 +354,56 @@ div.form {
   padding: 10px 0 0 0;
 }
 
-input[type="text"].form {
+input[type="text"].form,
+input[type="password"].form,
+input[type="email"].form {
   color: $darkblue;
   box-sizing: border-box;
   font-family: $font;
   font-size: 1.1em;
-  padding: 5px 14px;
+  padding: 7px 14px;
   background: none;
-  border: 2px solid $darkblue;
   outline: none;
   width: 100%;
   height: 45px;
   float: left;
+  margin: 7px 0;
+  border: none;
+  background: #e6e6f3;
+}
+
+input[type="text"].form:focus,
+input[type="password"].form:focus,
+input[type="email"].form:focus {
+  background: #e1e1f3;
+  border-color: #e1e1f3;
+}
+
+button.form {
+  float: right;
+  background: $green;
+  border: none;
+  outline: none;
+  font-size: 1.3em;
+  color: $lightblue;
+  font-weight: 700;
+  padding: 8px 30px;
+  margin-top: 7px;
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: background 0.15s cubic-bezier(0.39, 0.575, 0.565, 1),
+    color 0.15s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+button.form:hover {
+  background: $lightblue;
+  color: #fff;
+}
+
+label {
+  font-family: "Poppins";
+  float: left;
+  margin-bottom: -7px;
 }
 
 @media only screen and (min-width: $xl) {

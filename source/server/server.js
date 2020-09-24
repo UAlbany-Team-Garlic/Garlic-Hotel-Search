@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 //================= Lib Imports ========================================================================================
 
@@ -6,7 +6,7 @@ const express = require("express");
 const session = require("express-session");
 
 const HotelAPI = require("./API");
-const DatabaseInterface = require("./database")
+const DatabaseInterface = require("./database");
 
 
 //================= Express and Routing Setip ==========================================================================
@@ -19,20 +19,20 @@ app.use(express.static(".")); //use default static routing for anything not spec
 app.use(session({secret: "GarlicHotelSearch"})); //set up sessions with a unique secret for ID generation
 
 //use index.html as our homepage, send it when "root page" is requested
-app.get("/", function(req, res){
-    res.sendFile(process.cwd() + "/index.html");
+app.get("/", function (req, res) {
+  res.sendFile(process.cwd() + "/index.html");
 });
 
 
 //================== Endpoint Handlers ===================================================================================
 
 //Handle search requests
-app.get("/GarlicSearchEndpoint", function(req, res){ 
-    let searchText = decodeURI(req.query.search);
-    let dateRange = decodeURI(req.query.dates);
-    //console.log("Recived Request to search for "+ searchText);
-    let listingObject = HotelAPI.search(searchText);    //Call our hotel search interface in API.js 
-    res.json(listingObject);
+app.get("/GarlicSearchEndpoint", function (req, res) {
+  let searchText = decodeURI(req.query.search);
+  let dateRange = decodeURI(req.query.dates);
+  console.log("Recived Request to search for " + searchText);
+  let listingObject = HotelAPI.search(searchText); //Call our hotel search interface in API.js
+  res.json(listingObject);
 });
 
 //Account Creation Handling
@@ -43,7 +43,6 @@ app.get("/GarlicAccountCreationEndpoint", function(req, res){
             req.session.user = newUserReturnObject.user;
         return res.json(newUserReturnObject);
     }
-        
 });
 
 /*
@@ -61,4 +60,4 @@ app.get("/GarlicUpdateUserEndpoint", function(req, res){
 */
 
 //Start
-app.listen(8080); 
+app.listen(8080);
