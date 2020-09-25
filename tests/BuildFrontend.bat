@@ -2,5 +2,5 @@
 set curdir=%cd%
 cd %~dp0
 cd ../source/client
-npm run-script build
+call npm run-script build
 cd %curdir%

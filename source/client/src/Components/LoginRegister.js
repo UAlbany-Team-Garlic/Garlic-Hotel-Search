@@ -1,5 +1,6 @@
 import React from "react";
 import { loginRegisterSwitch } from "./js/loginregister.js";
+import { newUser } from "../userCode"
 
 function LoginRegister() {
   return (
@@ -60,7 +61,7 @@ function LoginRegister() {
                   placeholder=""
                   id="pwCheck"
                 ></input>
-                <button className="form">Register</button>
+                <button className="form" onClick={() => {newUser();}}>Register</button>
               </div>
               <div id="loginForm">
                 <h1 className="loginRegister" style={{ marginBottom: "12px" }}>

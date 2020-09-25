@@ -78,18 +78,22 @@ class User{
     }
 }
 
+exports.User = User;
+
 class UserRes{
-    constructor(){
-        this.user = null;
-        this.errors = [];
+    constructor(user = null, errors = []){
+        this.user = user;
+        this.errors = errors;
     }
 }
+
+exports.UserRes = UserRes;
 
 //=========================== User Functions ==============================================================================
 
 function newUser(query){
     let username = query.username || "", password = query.password || "", email = query.email || "", phone = query.phone || "";
-    let returnObject = {};
+    let returnObject = new UserRes();
     try{
         returnObject.errors = credValidator.credValidation(username, password, email, phone);     //re-validate credentials server side
         if(returnObject.errors.length != 0){
@@ -105,11 +109,24 @@ function newUser(query){
     }
 }
 
+//get a query with username and password, return a user object to be saved in the session
+function authenticate(query){
+    let username = query.username || "", password = query.password || "";
+    let returnObject = new UserRes();
+    try{
+        returnObject.user = new User(username);
+        if(returnObject.user.passHash !== hashPassword(password))
+            returnObject = new UserRes(null, ["Incorrect Password, please try again."]);
+    }catch(error){
+        returnObject.errors.push("Server Side Error: " + error.message)
+    }finally{
+        return returnObject;
+    }
+}
+
 exports.newUser = newUser;
 
-function deleteUser(query){
-
-}
+function deleteUser(query){}
 
 exports.deleteUser = deleteUser;
 

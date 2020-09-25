@@ -37,12 +37,13 @@ app.get("/GarlicSearchEndpoint", function (req, res) {
 
 //Account Creation Handling
 app.get("/GarlicAccountCreationEndpoint", function(req, res){
-    if(!req.session.user){
+    if(!req.session || !req.session.user){  //If there is no session or session has no associated user
         let newUserReturnObject = DatabaseInterface.newUser(req.query);
-        if(newUserReturnObject.errors.length == 0)
+        if(newUserReturnObject.errors.length == 0)  //If there were no user creation errors
             req.session.user = newUserReturnObject.user;
         return res.json(newUserReturnObject);
     }
+    return new DatabaseInterface.UserRes(null, ["Can not create an account while having an active user session"]);
 });
 
 /*
