@@ -1,12 +1,7 @@
 import React from "react";
 import { runSearch } from "../makeSearch.js";
 
-function Search(runSearch) {
-  var i; //Counter
-  var leftCol = [];
-  var midCol = [];
-  var rightCol = [];
-
+function Search() {
   return (
     <div>
       <div className="container no-padding">
@@ -28,19 +23,7 @@ function Search(runSearch) {
                 <button
                   className="search"
                   onClick={() => {
-                    var hotelData = runSearch();
-                    //Split data returned from search results into 3 column arrays.
-                    for (i = 0; i < hotelData.length; i++) {
-                      if (i < hotelData.length / 3)
-                        leftCol = hotelData.map((hotel) => <li>{hotel}</li>);
-                      else if (
-                        i > hotelData.length / 3 &&
-                        i < (2 * hotelData.length) / 3
-                      )
-                        midCol = hotelData.map((hotel) => <li>{hotel}</li>);
-                      else
-                        rightCol = hotelData.map((hotel) => <li>{hotel}</li>);
-                    }
+                    results = runSearch();
                   }}
                 >
                   Search Hotels
@@ -56,7 +39,7 @@ function Search(runSearch) {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <ul>{leftCol}</ul>
+              <ul>{results.leftCol}</ul>
             </div>
           </div>
           <div className="four col middle">
@@ -67,7 +50,7 @@ function Search(runSearch) {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <ul>{midCol}</ul>
+              <ul>{results.midCol}</ul>
             </div>
           </div>
           <div className="four col right">
@@ -78,7 +61,7 @@ function Search(runSearch) {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <ul>{rightCol}</ul>
+              <ul>{results.rightCol}</ul>
             </div>
           </div>
         </div>
