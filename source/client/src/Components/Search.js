@@ -1,7 +1,18 @@
 import React from "react";
-import {runSearch} from "../makeSearch.js"
+import { runSearch } from "../makeSearch.js";
 
-function Search() {
+function Search(searchData) {
+  var i; //Counter
+
+  //Split data returned from search results into 3 column arrays.
+  for (i = 0; i < searchData.length; i++) {
+    if (i < searchData.length / 3)
+      leftCol = searchData.map((hotel) => <li>{hotel}</li>);
+    else if (i > searchData.length / 3 && i < (2 * searchData.length) / 3)
+      midCol = searchData.map((hotel) => <li>{hotel}</li>);
+    else rightCol = searchData.map((hotel) => <li>{hotel}</li>);
+  }
+
   return (
     <div>
       <div className="container no-padding">
@@ -20,7 +31,14 @@ function Search() {
                   id="searchInput"
                 ></input>
                 <button className="dates"></button>
-                <button className="search" onClick={() => {runSearch();}}>Search Hotels</button>
+                <button
+                  className="search"
+                  onClick={() => {
+                    runSearch();
+                  }}
+                >
+                  Search Hotels
+                </button>
               </div>
             </div>
           </div>
@@ -32,6 +50,7 @@ function Search() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
+              <ul>{leftCol}</ul>
             </div>
           </div>
           <div className="four col middle">
@@ -42,6 +61,7 @@ function Search() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
+              <ul>{midCol}</ul>
             </div>
           </div>
           <div className="four col right">
@@ -52,6 +72,7 @@ function Search() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
+              <ul>{rightCol}</ul>
             </div>
           </div>
         </div>
