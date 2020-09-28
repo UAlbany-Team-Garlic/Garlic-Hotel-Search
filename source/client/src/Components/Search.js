@@ -1,17 +1,11 @@
 import React from "react";
 import { runSearch } from "../makeSearch.js";
 
-function Search(searchData) {
+function Search(runSearch) {
   var i; //Counter
-
-  //Split data returned from search results into 3 column arrays.
-  for (i = 0; i < searchData.length; i++) {
-    if (i < searchData.length / 3)
-      leftCol = searchData.map((hotel) => <li>{hotel}</li>);
-    else if (i > searchData.length / 3 && i < (2 * searchData.length) / 3)
-      midCol = searchData.map((hotel) => <li>{hotel}</li>);
-    else rightCol = searchData.map((hotel) => <li>{hotel}</li>);
-  }
+  var leftCol = [];
+  var midCol = [];
+  var rightCol = [];
 
   return (
     <div>
@@ -34,7 +28,19 @@ function Search(searchData) {
                 <button
                   className="search"
                   onClick={() => {
-                    runSearch();
+                    var hotelData = runSearch();
+                    //Split data returned from search results into 3 column arrays.
+                    for (i = 0; i < hotelData.length; i++) {
+                      if (i < hotelData.length / 3)
+                        leftCol = hotelData.map((hotel) => <li>{hotel}</li>);
+                      else if (
+                        i > hotelData.length / 3 &&
+                        i < (2 * hotelData.length) / 3
+                      )
+                        midCol = hotelData.map((hotel) => <li>{hotel}</li>);
+                      else
+                        rightCol = hotelData.map((hotel) => <li>{hotel}</li>);
+                    }
                   }}
                 >
                   Search Hotels
