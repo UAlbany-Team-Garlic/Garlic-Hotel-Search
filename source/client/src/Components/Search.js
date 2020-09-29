@@ -23,7 +23,7 @@ function Search() {
                 <button
                   className="search"
                   onClick={() => {
-                    results = runSearch();
+                    runSearch();
                   }}
                 >
                   Search Hotels
@@ -39,7 +39,7 @@ function Search() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <ul>{results.leftCol}</ul>
+              <div id="leftSearchResult"></div>
             </div>
           </div>
           <div className="four col middle">
@@ -50,7 +50,7 @@ function Search() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <ul>{results.midCol}</ul>
+              <div id="midSearchResult"></div>
             </div>
           </div>
           <div className="four col right">
@@ -61,7 +61,7 @@ function Search() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
-              <ul>{results.rightCol}</ul>
+              <div id="rightSearchResult"></div>
             </div>
           </div>
         </div>

@@ -3,21 +3,33 @@
 function searchSuccessCallback(data) {
   console.log(data);
 
-  var i; //Counter
-  var leftCol = [];
-  var midCol = [];
-  var rightCol = [];
+  let leftBox = document.getElementById("leftSearchResult");
+  let midBox = document.getElementById("midSearchResult");
+  let rightBox = document.getElementById("rightSearchResult");
 
-  //var hotelData = Object.values(runSearch());
-  //Split data returned from search results into 3 column arrays.
-  for (i = 0; i < data.length; i++) {
-    if (i < data.length / 3) leftCol = data.map((hotel) => <li>{hotel}</li>);
-    else if (i > data.length / 3 && i < (2 * data.length) / 3)
-      midCol = data.map((hotel) => <li>{hotel}</li>);
-    else rightCol = data.map((hotel) => <li>{hotel}</li>);
+  leftBox.innerHTML = "";
+  midBox.innerHTML = "";
+  rightBox.innerHTML = "";
+
+  try {
+    for (let i = 0; i < data.length; i++) {
+      if (i < data.length / 3) {
+        leftBox.innerHTML += `<div className="text-container">
+        <h1 className="subheader">${data[i].name}</h1>
+        <p className="paragraph-md">`;
+      } else if (i >= data.length / 3 && i < 2 * (data.length / 3)) {
+        midBox.innerHTML += `<div className="text-container">
+        <h1 className="subheader">${data[i].name}</h1>
+        <p className="paragraph-md">`;
+      } else {
+        rightBox.innerHTML += `<div className="text-container">
+        <h1 className="subheader">${data[i].name}</h1>
+        <p className="paragraph-md">`;
+      }
+    }
+  } catch (e) {
+    console.error(e);
   }
-
-  return (results = [leftCol, midCol, rightCol]);
 }
 
 //This function is called when the search fails for any reason
@@ -46,6 +58,4 @@ export function runSearch() {
     .then((response) => response.json()) //convert return data to json
     .then((data) => searchSuccessCallback(data)) //do something with our API return data
     .catch((reason) => searchFailureCallback(reason)); //handle errors
-
-  return response;
 }
