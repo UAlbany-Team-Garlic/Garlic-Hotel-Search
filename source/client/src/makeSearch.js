@@ -3,7 +3,16 @@
 //This function is called when the search data is sucessfull returned from the API
 //The data will be in the form of a Listing object array found in /source/server/API.js
 function searchSuccessCallback(data){
-    console.log(data);
+    try{
+        let resBox = document.getElementById("meme");
+        resBox.innerHTML = "";
+        for(let i = 0; i < data.length; i++){
+            resBox.innerHTML += '<div className="twelve col left"><div className="text-container"><h1 className="subheader">' + data[i].name + '</h1><p className="paragraph-md">' + JSON.stringify(data[i]) + '</p></div></div>'
+            //resBox.innerHTML += "<div><p>" +  + "</p></div>";
+        }
+    }catch(e){
+        console.error(e);
+    }
 }
 
 //This function is called when the search fails for any reason
