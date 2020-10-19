@@ -3,33 +3,7 @@
 function searchSuccessCallback(data) {
   console.log(data);
 
-  let leftBox = document.getElementById("leftSearchResult");
-  let midBox = document.getElementById("midSearchResult");
-  let rightBox = document.getElementById("rightSearchResult");
-
-  leftBox.innerHTML = "";
-  midBox.innerHTML = "";
-  rightBox.innerHTML = "";
-
-  try {
-    for (let i = 0; i < data.length; i++) {
-      if (i < data.length / 3) {
-        leftBox.innerHTML += `<div className="text-container">
-        <h1 className="subheader">${data[i].name}</h1>
-        <p className="paragraph-md">`;
-      } else if (i >= data.length / 3 && i < 2 * (data.length / 3)) {
-        midBox.innerHTML += `<div className="text-container">
-        <h1 className="subheader">${data[i].name}</h1>
-        <p className="paragraph-md">`;
-      } else {
-        rightBox.innerHTML += `<div className="text-container">
-        <h1 className="subheader">${data[i].name}</h1>
-        <p className="paragraph-md">`;
-      }
-    }
-  } catch (e) {
-    console.error(e);
-  }
+  displayData(data);
 }
 
 //This function is called when the search fails for any reason
