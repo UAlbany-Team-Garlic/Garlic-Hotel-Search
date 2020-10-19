@@ -4,6 +4,7 @@
 //The data will be in the form of a Listing object array found in /source/server/API.js
 function searchSuccessCallback(data){
     try{
+        console.log(data);
         let resBox = document.getElementById("meme");
         resBox.innerHTML = "";
         for(let i = 0; i < data.length; i++){
