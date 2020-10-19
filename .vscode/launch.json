@@ -3,7 +3,7 @@
     "compounds": [
         {
             "name": "Debug All",
-            "configurations": ["Backend Debug", "Frontend Debug"]
+            "configurations": ["Backend Debug", "Proxy Debug", "Frontend Debug"]
         }
     ],
     "configurations": [
@@ -11,7 +11,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Debug with Chrome against localhost",
-            "url": "http://localhost:8080/",
+            "url": "http://localhost:3000/",
             "webRoot": "${workspaceFolder}/source/client/build",
             "preLaunchTask": "Start Server",
             "postDebugTask": "Kill Server"
@@ -20,7 +20,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Frontend Debug",
-            "url": "http://localhost:8080/",
+            "url": "http://localhost:3000/",
             "webRoot": "${workspaceFolder}/source/client/build",
         },
         {
@@ -29,6 +29,15 @@
             "name": "Backend Debug",
             "cwd": "${workspaceFolder}",
             "program": "${workspaceFolder}/source/server/server.js",
+            "console": "externalTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Proxy Debug",
+            "cwd": "${workspaceFolder}/source/client",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run-script", "start"],
             "console": "externalTerminal"
         },
         {

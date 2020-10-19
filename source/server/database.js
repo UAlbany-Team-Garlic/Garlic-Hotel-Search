@@ -85,6 +85,12 @@ class UserRes{
         this.user = user;
         this.errors = errors;
     }
+
+    makeClientSafe(){
+        if(this.user)
+            this.user = this.user.getClientObject();
+        return this;
+    }
 }
 
 exports.UserRes = UserRes;
@@ -109,13 +115,15 @@ function newUser(query){
     }
 }
 
+exports.newUser = newUser;
+
 //get a query with username and password, return a user object to be saved in the session
 function authenticate(query){
     let username = query.username || "", password = query.password || "";
     let returnObject = new UserRes();
     try{
         returnObject.user = new User(username);
-        if(returnObject.user.passHash !== hashPassword(password))
+        if(bcrypt.compareSync(password, returnObject.user.passHash))
             returnObject = new UserRes(null, ["Incorrect Password, please try again."]);
     }catch(error){
         returnObject.errors.push("Server Side Error: " + error.message)
@@ -124,7 +132,28 @@ function authenticate(query){
     }
 }
 
-exports.newUser = newUser;
+exports.authenticate = authenticate;
+
+function updateDetails(query, user){
+    let email = query.email || "", phone = query.phone || "";
+    let returnObject = new UserRes();
+    try{
+        returnObject.errors = credValidator.credValidation("thisIsAValidUsername", "thisIsAValidPassword1122", email, phone);     //re-validate credentials server side
+        if(returnObject.errors.length != 0){
+            returnObject.errors.push("If you are seeing this message, you are illegally using the /GarlicAccountUpdateEndpoint endpoint")
+            return returnObject;
+        }
+        user.email = email;
+        user.phone = phone;
+        user.updateInDB();
+    }catch(error){
+        returnObject.errors.push("Server Side Error: " + error.message)
+    }finally{
+        return returnObject;
+    }
+}
+
+exports.updateDetails = updateDetails;
 
 function deleteUser(query){}
 
@@ -137,8 +166,3 @@ exports.addFavorite = addFavorite;
 function removeFavorite(){}
 
 exports.removeFavorite = removeFavorite;
-
-function updateDetails(){}
-
-exports.updateDetails = updateDetails;
-
