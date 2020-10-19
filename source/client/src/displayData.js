@@ -39,3 +39,5 @@ function displayData(data){
         console.error(e);
     }
 }
+
+export default displayData;
