@@ -1,5 +1,5 @@
 import React from "react";
-import {runSearch} from "../makeSearch.js"
+import { runSearch } from "../makeSearch.js";
 
 function Search() {
   return (
@@ -20,7 +20,14 @@ function Search() {
                   id="searchInput"
                 ></input>
                 <button className="dates"></button>
-                <button className="search" onClick={() => {runSearch();}}>Search Hotels</button>
+                <button
+                  className="search"
+                  onClick={() => {
+                    runSearch();
+                  }}
+                >
+                  Search Hotels
+                </button>
               </div>
             </div>
           </div>    
@@ -32,6 +39,7 @@ function Search() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
+              <div id="leftSearchResult"></div>
             </div>
           </div>
           <div className="four col middle">
@@ -42,6 +50,7 @@ function Search() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
+              <div id="midSearchResult"></div>
             </div>
           </div>
           <div className="four col right">
@@ -52,6 +61,7 @@ function Search() {
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
+              <div id="rightSearchResult"></div>
             </div>
           </div>
           <div id="meme">
