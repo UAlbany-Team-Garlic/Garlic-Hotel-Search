@@ -12,7 +12,7 @@
 $green: #7ad68d;
 $darkBg: #22222c;
 $lightBg: #e3e3e3;
-$navBg: #282a36;
+$navBg: #343746;
 $darkblue: #111116;
 $lightblue: #070708;
 $pcolor: #d0d0d0;
@@ -35,6 +35,7 @@ div#App {
 
 //--> NAVBAR
 $navHeight: 85px;
+$padding: 30px;
 
 #nav {
   position: relative;
@@ -42,6 +43,7 @@ $navHeight: 85px;
   height: $navHeight;
   width: 100%;
   background: $navBg;
+  margin-bottom: $padding/2;
 }
 
 .nav-logo {
@@ -58,12 +60,19 @@ $navHeight: 85px;
   cursor: pointer;
 }
 
+@media only screen and (max-width: $md) {
+  $padding: 20px;
+  #nav{margin-bottom: $padding/2}
+}
+
 @media only screen and (max-width: $sm) {
   .nav-logo {
     height: $navHeight * 0.5;
     width: $navHeight * 0.5;
     margin-top: 19px;
   }
+  $padding: 15px;
+  #nav{margin-bottom: $padding/2}
 }
 
 h1.nav-title {
@@ -113,29 +122,15 @@ h1.nav-title {
 }
 
 //--> FORM STUFF
-button.dates {
-  background: url("../imgs/calendar-white.png") no-repeat;
-  background-color: $lightblue;
-  background-size: 60%;
-  background-position: center;
-  border: none;
-  outline: none;
-  height: 45px;
-  width: 45px;
-  float: right;
-  margin-top: -52px;
-  cursor: pointer;
-}
-
 button.search {
-  float: right;
+  //float: right;
   background: $green;
   border: none;
   outline: none;
   font-size: 1.3em;
   color: $lightblue;
   font-weight: 700;
-  padding: 8px 20px;
+  padding: 8px 35px;
   margin-top: 15px;
   cursor: pointer;
   text-transform: lowercase;
@@ -175,7 +170,7 @@ button.search:hover {
 }
 
 h1.loginRegister {
-  color: $darkblue;
+  color: #fff;
   font-size: 2.2em;
   margin-top: -12px;
   font-weight: 500;
@@ -192,7 +187,7 @@ h1.loginRegister {
 
 #loginSwitch {
   cursor: pointer;
-  color: #ececf9;
+  color: $navBg;
   transition: color 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
@@ -207,9 +202,165 @@ h1.loginRegister {
 }
 
 .loginForm-active {
-  display: block !important;
+  display: block!important;
 }
 
 .registerForm-active {
   display: none !important;
+}
+
+// Hotel Display Stuff
+img.hotel-img{
+  width: 100%; 
+  height: 150px;
+  background: url('../imgs/beach2.png') no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: none;
+  outline: none;
+}
+
+div#row{
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div#searchColContainer{
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+}
+
+input#searchInput{
+  padding: 28px 20px;
+  font-size: 1.25em;
+}
+
+input#searchInput:focus{
+  background: rgb(222, 234, 248);
+}
+
+button.dates {
+  background: url("../imgs/calendar-white.png") no-repeat;
+  background-color: $lightblue;
+  background-size: 60%;
+  background-position: center;
+  border: none;
+  outline: none;
+  height: 58px;
+  width: 58px;
+  float: right;
+  margin-top: -63.5px;
+  cursor: pointer;
+}
+
+button#searchBtn{
+  font-size: 1.3em;
+  padding: 10px 40px;
+  margin-top: 13px;
+}
+
+#searchContainer{
+  transition: opacity .4s ease;
+}
+
+.searchContainer-active{
+  opacity: 0;
+  pointer-events: none;
+}
+
+$padding: 25px;
+#resultGroup{
+  display: none;
+  margin-top: 0;
+}
+
+.results-active{
+  pointer-events: all !important;
+  display: block !important;
+}
+
+#searchBack,  button#numResults{
+  margin-left: $padding;
+  margin-bottom: $padding/2;
+  display: block;
+}
+
+button#numResults{
+  background: #fff;
+  position: absolute;
+  right: $padding;
+}
+
+button#numResults:hover{
+  background: #000;
+  color: #fff;
+}
+
+@media only screen and (max-width: $md) {
+  $padding: 20px;
+  #searchBack{
+    margin-left: $padding;
+    margin-bottom: $padding/2;
+    margin-top: $padding/2;
+    width: auto;
+  }
+  h1#numResults{
+    top: 108px; left: 250px;
+  }
+  button#numResults{
+    right: $padding;
+    margin-top: $padding/2;
+  }
+}
+
+@media only screen and (max-width: $sm) {
+  $padding: 15px;
+  #searchBack{
+    margin-left: $padding;
+    margin-bottom: $padding/2;
+    margin-top: $padding/2;
+    width: auto;
+    font-size: 1.2em;
+    width: calc(50% - 22px);
+    padding-right: 0;
+    padding-left: 0;
+  }
+  h1#numResults{
+    top: 103px; left: 245px;
+  }
+  button#numResults{
+    position: absolute;
+    right: $padding;
+    width: calc(50% - 22px);
+    font-size: 1.2em;
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: $padding/2;
+  }
+}
+
+// SETTINGS stuff
+button#update{
+  float: right;
+}
+
+div.settingsPic{
+  width: 100%;
+  height: auto;
+  border-radius: 100%;
+}
+
+div.settingsPic img{
+  width: 100%;
+  height: auto;
+  max-height: 250px;
+  max-width: 250px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%)
 }
