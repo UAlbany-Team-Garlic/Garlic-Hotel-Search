@@ -3,6 +3,11 @@
     This file contatins all frontend code involved with the user inclduing
         User Creation
         CredentialValidation also used server side 
+        User Validation
+        Settings update
+
+
+    Do not change the export style to ES6 modules, keep it CommonJS for Node
 */
 
 //================ USER CREATION ====================================================================================================
@@ -10,11 +15,12 @@
 //Use this function to set up the frontend to display errors durring user creation
 function newUserError(errors){
     for(let i = 0; i < errors.length; i++)  //Right now it just console.error s all issues
-        console.error("User Creation Error:" + error);
+        console.error("User Creation Error:" + errors[i]);
 }
 
 //Use this function to set up the frontend to display sucess after an account is sucessfully created, user is a SafeUser Object defined in /src/server/database.js
 function newUserSuccess(user){
+    console.log("Account Suceffully Created! You were automatically logged in.")
     console.log(user);
 }
 
@@ -49,11 +55,11 @@ exports.credValidation = credValidation;
 //This function will be called by the frontend when a new user is to be created
 function newUser(){
     //Get New User Data
-    let username = "";//document.getElementById().value; 
-    let password = "";//document.getElementById().value;
-    let confirmPassword = "";//document.getElementById().value;
-    let email = "";//document.getElementById().value;
-    let phone = "";//document.getElementById().value;
+    let username = document.getElementById("user").value; 
+    let password = document.getElementById("pw").value;
+    let confirmPassword = document.getElementById("pwCheck").value;
+    let email = document.getElementById("email").value;
+    let phone = document.getElementById("phone").value;
 
     //Check for errors client side first to free up server processing time
     let errors = credValidation(username, password, email, phone)   //Check credential properties, need to be re-checked backend
@@ -65,8 +71,10 @@ function newUser(){
     }
 
     //Since we're using HTTPS we can send the raw username and password
-    fetch("/GarlicAccountCreationEndpoint?username=" + encodeURI(username) + "&password=" + encodeURI(password) + "&email=" + encodeURI(email) + "&phone=" + encodeURI(phone))
-    .then(response => response.json())               //convert return data to json
+    let request = "/GarlicAccountCreationEndpoint?username=" + encodeURI(username) + "&password=" + encodeURI(password) + "&email=" + encodeURI(email) + "&phone=" + encodeURI(phone);
+    console.log("Requesting" + request)
+    fetch(request)
+    .then(response => response.json())              //convert return data to json
     .then(function(response){   //Callback from backend
         if(response.errors.length != 0){
             newUserError(response.errors);
@@ -79,3 +87,34 @@ function newUser(){
 } 
 
 exports.newUser = newUser;
+
+//============== User Login ======================================================================================
+
+
+function userLoginError(errors){
+    for(let i = 0; i < errors.length; i++)  //Right now it just console.error s all issues
+        console.error("User authentication Error:" + errors[i]);
+}
+
+function userLoginSuccess(userDetails){
+    console.log("You are successfully logged in as " + userDetails.username);
+}
+
+function userLogin(){
+    let username = document.getElementById("userLogin").value;
+    let password = document.getElementById("pwLogin").value;
+    let request = "/GarlicAuthEndpoint?username=" + encodeURI(username) + "&password=" + encodeURI(password);
+    fetch(request)
+    .then(response => response.json())              //convert return data to json
+    .then(function(response){   //Callback from backend
+        if(response.errors.length != 0){
+            userLoginError(response.errors);
+            return;
+        }
+        userLoginSuccess(response.user);
+    }).catch(function(reason){  //Unexpected fetch fault 
+        userLoginError(["Unexpected new user fetch() fault: " + reason]);
+    });
+}
+
+exports.userLogin = userLogin;

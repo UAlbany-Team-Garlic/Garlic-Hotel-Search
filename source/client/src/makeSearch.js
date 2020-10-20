@@ -1,9 +1,9 @@
 import displayData from './displayData';
 //This function is called when the search data is sucessfull returned from the API
 //The data will be in the form of a Listing object array found in /source/server/API.js
-function searchSuccessCallback(data) {
-  console.log(data);
 
+function searchSuccessCallback(data){
+  console.log(data);
   displayData(data);
 }
 
