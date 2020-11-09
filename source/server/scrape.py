@@ -36,8 +36,8 @@ class Listing:
     self.features = features
     self.imgs = imgs
 #method format = (city, stateOrCountry, adults, beds, checkinyear, checkinmonth, checkinday, checkoutyear, checkoutmonth, checkoutday)
-def getData(sys.argv[0], sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7],
-            sys.argv[8], sys.argv[9]):
+#sys args = sys.argv[0], sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7],sys.argv[8], sys.argv[9]
+def getData(city, stateOrCountry, adults, beds, checkinyear, checkinmonth, checkinday, checkoutyear, checkoutmonth, checkoutday):
         listArg = list()
         urlArg = ('https://www.expedia.com/Hotel-Search?adults=' + sys.argv[2] + '&beds=' + sys.argv[3] + '&d1=' + sys.argv[4] + '-' + sys.argv[5] + '-' + sys.argv[6] + '/' +
                     '%2F&d2=' + sys.argv[7] + '-' + sys.argv[8] + '-' + sys.argv[9] + '%25&destination=' + sys.argv[0] + "%20%28and%20vicinity%29%2C%20"
@@ -75,8 +75,8 @@ def getFeatures():
         featureList.append(features[item])
     return (featureList)
 
-hotelList = getData(city, stateOrCountry, adults, beds, checkinyear, checkinmonth, checkinday, checkoutyear,
-            checkoutmonth, checkoutday)
+hotelList = getData(sys.argv[0], sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7],
+            sys.argv[8], sys.argv[9])
 
 jsonOutput = json.dumps(hotelList)
 printData(hotelList)
