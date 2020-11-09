@@ -27,6 +27,20 @@ function Nav() {
                 </p>
               </div>
             </a>
+            <a href="/settings" className="menu-item-link">
+              <div className="menu-item">
+                <p className="menu-item-link-p">
+                  Settings
+                </p>
+              </div>
+            </a>
+            <a href="/logout" className="menu-item-link">
+              <div className="menu-item">
+                <p className="menu-item-link-p">
+                  Logout
+                </p>
+              </div>
+            </a>
           </div>
           <div
             className="nav-hamburger"

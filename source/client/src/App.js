@@ -5,6 +5,7 @@ import "./scss/hamburger.scss";
 import Nav from "./Components/Nav";
 import Search from "./Components/Search";
 import Footer from "./Components/Footer";
+import Settings from "./Components/Settings";
 import LoginRegister from "./Components/LoginRegister";
 
 function App() {
@@ -16,11 +17,13 @@ function App() {
           <Route path="/login">
             <LoginRegister />
           </Route>
+          <Route path="/settings">
+            <Settings />
+          </Route>
           <Route path="">
             <Search />
           </Route>
         </Switch>
-        <Footer />
       </div>
     </Router>
   );
