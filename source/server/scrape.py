@@ -39,9 +39,9 @@ class Listing:
 #sys args = sys.argv[0], sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], sys.argv[6], sys.argv[7],sys.argv[8], sys.argv[9]
 def getData(city, stateOrCountry, adults, beds, checkinyear, checkinmonth, checkinday, checkoutyear, checkoutmonth, checkoutday):
         listArg = list()
-        urlArg = ('https://www.expedia.com/Hotel-Search?adults=' + sys.argv[2] + '&beds=' + sys.argv[3] + '&d1=' + sys.argv[4] + '-' + sys.argv[5] + '-' + sys.argv[6] + '/' +
-                    '%2F&d2=' + sys.argv[7] + '-' + sys.argv[8] + '-' + sys.argv[9] + '%25&destination=' + sys.argv[0] + "%20%28and%20vicinity%29%2C%20"
-                         + sys.argv[1] + '&sort=RECOMMENDED')
+        urlArg = ('https://www.expedia.com/Hotel-Search?adults=' + adults + '&beds=' + beds + '&d1=' + checkinyear+ '-' + checkinmonth + '-' + checkinday + '/' +
+                    '%2F&d2=' + checkoutyear + '-' + checkoutmonth + '-' + checkoutday + '%25&destination=' + city + "%20%28and%20vicinity%29%2C%20"
+                         + stateOrCountry + '&sort=RECOMMENDED')
         page = requests.get(urlArg, headers=headers)
         soup = BeautifulSoup(page.text, 'lxml')
         price = soup.findAll('span',{'data-stid': 'content-hotel-lead-price'})
